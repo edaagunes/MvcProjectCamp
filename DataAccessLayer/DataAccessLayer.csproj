@@ -59,7 +59,6 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
-    <Compile Include="Concrete\Repositories\CategoryRepository.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
     <Compile Include="EntityFramework\EfAboutDal.cs" />
     <Compile Include="EntityFramework\EfCategoryDal.cs" />
@@ -78,6 +77,10 @@
     <Compile Include="Migrations\202411021836122_mig3.cs" />
     <Compile Include="Migrations\202411021836122_mig3.Designer.cs">
       <DependentUpon>202411021836122_mig3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411022011034_mig4.cs" />
+    <Compile Include="Migrations\202411022011034_mig4.Designer.cs">
+      <DependentUpon>202411022011034_mig4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411021836122_mig3.resx">
       <DependentUpon>202411021836122_mig3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411022011034_mig4.resx">
+      <DependentUpon>202411022011034_mig4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

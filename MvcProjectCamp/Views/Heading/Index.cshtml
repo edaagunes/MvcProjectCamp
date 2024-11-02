@@ -23,7 +23,7 @@
     <section class="content">
         <!-- Default box -->
         <div class="card">
-            
+
             <div class="card-body p-0">
                 <table class="table table-hover projects">
                     <thead>
@@ -107,7 +107,7 @@
                                     <span class="@color">@item.Category.CategoryName</span>
                                 </td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="#">
+                                    <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingId">
                                         <i class="fas fa-folder">
                                         </i>
                                         İçerik
@@ -129,8 +129,12 @@
                 </table>
             </div>
             <!-- /.card-body -->
+
         </div>
         <!-- /.card -->
+
     </section>
 </body>
+
 </html>
+<a href="/Heading/AddHeading" class="btn btn-primary">Yeni Başlık Girişi</a>
