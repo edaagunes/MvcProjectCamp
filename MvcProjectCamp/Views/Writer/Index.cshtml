@@ -7,18 +7,40 @@
 
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        .btn-highlight {
+            background-color: #218838; /* Yeşil renk */
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+            .btn-highlight:hover {
+                background-color: #218838; /* Daha koyu bir yeşil */
+                transform: scale(1.05); /* Biraz büyüme efekti */
+            }
+    </style>
+</head>
 <body class="hold-transition sidebar-mini">
     <!-- /.navbar -->
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="row mb-2 d-flex align-items-center justify-content-between">
                 <div class="col-sm-6">
                     <h1>Yazarlar</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <a class="btn btn-highlight" href="/Writer/AddWriter">Yeni Yazar Ekle</a>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
+
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
@@ -30,7 +52,7 @@
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                             <div class="card bg-light">
                                 <div class="card-header text-muted border-bottom-0">
-                                   @item.WriterTitle
+                                    @item.WriterTitle
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">

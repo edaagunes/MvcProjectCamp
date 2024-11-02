@@ -1,11 +1,9 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Content>
 @{
     ViewBag.Title = "ContentByHeading";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>ContentByHeading</h2>
-
 
 @{
     ViewBag.Title = "ContentByHeading";
@@ -26,21 +24,24 @@
                         <!-- The time line -->
                         <div class="timeline">
                             <!-- timeline time label -->
-                            <div class="time-label">
-                                <span class="bg-success">Tarih</span>
-                            </div>
-                            <!-- /.timeline-label -->
-                            <!-- timeline item -->
-                            <div>
-                                <i class="fas fa-comment bg-yellow"></i>
-                                <div class="timeline-item">
-                                    <h3 class="timeline-header"><a href="#">Test</a> Deneme</h3>
-                                    <div class="timeline-body">
-                                        İçerik
+                            @foreach (var item in Model)
+                            {
+                                <div class="time-label">
+                                    <span class="bg-success">@Convert.ToDateTime(item.ContentDate).ToString("dd/MM/yyyy")</span>
+                                </div>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+                                <div>
+                                    <i class="fas fa-comment bg-yellow"></i>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurname</a></h3>
+                                        <div class="timeline-body">
+                                            @item.ContentValue
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- END timeline item -->
+                                <!-- END timeline item -->
+                            }
                         </div>
                     </div>
                     <!-- /.col -->
