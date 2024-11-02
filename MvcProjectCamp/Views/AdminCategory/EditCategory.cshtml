@@ -8,15 +8,14 @@
 @using (Html.BeginForm("EditCategory", "AdminCategory", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.Label("Kategori Id")
-        @Html.TextBoxFor(x => x.CategoryId, new {@class="form-control"})
+        @Html.HiddenFor(x => x.CategoryId, new {@class="form-control"})
         <br />
         @Html.Label("Kategori Adı")
         @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
         <br />
         @Html.Label("Açıklama")
         @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control" })
-        <button class="btn btn-success">Güncelle</button>
         <br />
+        <button class="btn btn-success">Güncelle</button>
     </div>
 }
