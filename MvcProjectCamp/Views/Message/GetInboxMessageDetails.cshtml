@@ -1,6 +1,6 @@
-﻿@model EntityLayer.Concrete.Contact
+﻿@model EntityLayer.Concrete.Message
 @{
-    ViewBag.Title = "GetContactDetails";
+    ViewBag.Title = "GetInboxMessageDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -12,7 +12,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-               
+
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -32,24 +32,24 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                            <div class="card-body p-0">
-                                <div class="mailbox-read-info">
-                                    <h5>Konu: @Html.DisplayFor(x=>x.Subject)</h5>
-                                    <br />
-                                    <h6>
-                                        Kimden: @Html.DisplayFor(x => x.UserMail)
-                                        <span class="mailbox-read-time float-right">@(Model.ContactDate.ToString("dd/MMMMM/yyyy"))</span>
-                                    </h6>
-                                </div>
+                        <div class="card-body p-0">
+                            <div class="mailbox-read-info">
+                                <h5>Konu: @Html.DisplayFor(x => x.Subject)</h5>
                                 <br />
-                                <div class="mailbox-read-message">
-                                    <p>@Html.DisplayFor(x => x.Message)</p>
-                                   
-                                </div>
-                                <!-- /.mailbox-read-message -->
+                                <h6>
+                                    Kimden: @Html.DisplayFor(x => x.SenderMail)
+                                    <span class="mailbox-read-time float-right"> @(Model.MessageDate.ToString("dd/MMMMM/yyyy"))</span>
+                                </h6>
                             </div>
-                            <!-- /.card-footer -->
-                        
+                            <br />
+                            <div class="mailbox-read-message">
+                                <p>@Html.DisplayFor(x => x.MessageContent)</p>
+
+                            </div>
+                            <!-- /.mailbox-read-message -->
+                        </div>
+                        <!-- /.card-footer -->
+
                     </div>
                     <!-- /.card -->
                 </div>
@@ -60,3 +60,4 @@
     </section>
 </body>
 </html>
+

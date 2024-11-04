@@ -12,6 +12,7 @@ namespace MvcProjectCamp.Controllers
 	public class ContactController : Controller
 	{
 		ContactManager manager = new ContactManager(new EfContactDal());
+		MessageManager messageManager = new MessageManager(new EfMessageDal());
 		ContactValidator validationRules = new ContactValidator();
 		public ActionResult Index()
 		{
@@ -21,6 +22,10 @@ namespace MvcProjectCamp.Controllers
 
 		public PartialViewResult MessageMenuPartial()
 		{
+			ViewBag.messageCount = manager.GetList().Count;
+			ViewBag.inboxMessageCount = messageManager.GetListInbox().Count;
+			ViewBag.sendMessageCount = messageManager.GetListSendbox().Count;
+
 			return PartialView();
 		}
 
