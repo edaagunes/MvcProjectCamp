@@ -25,12 +25,12 @@ namespace BusinessLayer.Concrete
 
 		public List<Message> GetListInbox()
 		{
-			return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com");
+			return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com" && x.IsDeleted==false);
 		}
 
 		public List<Message> GetListSendbox()
 		{
-			return _messageDal.List(x => x.SenderMail == "admin@gmail.com");
+			return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.IsDeleted == false);
 		}
 
 		public void MessageAdd(Message message)
@@ -38,9 +38,22 @@ namespace BusinessLayer.Concrete
 			_messageDal.Insert(message);
 		}
 
-		public void MessageDelete(Message message)
+		// Çoklu silme işlemi
+		public void DeleteMessages(List<int> messageIds)
 		{
-			throw new NotImplementedException();
+			foreach (var id in messageIds)
+			{
+				var message = _messageDal.Get(x => x.MessageId == id);
+				if (message != null)
+				{
+					message.IsDeleted = true; 
+					_messageDal.Update(message);
+				}
+			}
+		}
+		public List<Message> GetTrashMessages()
+		{
+			return _messageDal.List(x => x.IsDeleted == true);
 		}
 
 		public void MessageUpdate(Message message)

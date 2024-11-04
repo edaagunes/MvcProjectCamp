@@ -14,7 +14,8 @@ namespace BusinessLayer.Abstract
 		void MessageAdd(Message message);
 		Message GetById(int id);
 
-		void MessageDelete(Message message);
+		void DeleteMessages(List<int> messageIds); // Çoklu silme metodu
+		List<Message> GetTrashMessages();
 		void MessageUpdate(Message message);
 	}
 }

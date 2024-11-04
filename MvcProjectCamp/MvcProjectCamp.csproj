@@ -2315,6 +2315,7 @@
     <Content Include="Views\Message\NewMessage.cshtml" />
     <Content Include="Views\Message\GetInboxMessageDetails.cshtml" />
     <Content Include="Views\Message\GetSendboxMessageDetails.cshtml" />
+    <Content Include="Views\Message\TrashMessages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

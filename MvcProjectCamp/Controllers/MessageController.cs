@@ -60,8 +60,33 @@ namespace MvcProjectCamp.Controllers
 					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
 				}
 			}
-			return View();
-			
+			return View();		
+		}
+
+
+		[HttpPost]
+		public ActionResult DeleteMessages(List<int> messageIds,string redirectView)
+		{
+			manager.DeleteMessages(messageIds);
+			// Silme işleminden sonra hangi sayfaya dönüleceğine karar ver
+			if (redirectView == "Inbox")
+			{
+				return RedirectToAction("Inbox");
+			}
+			else if (redirectView == "Sendbox")
+			{
+				return RedirectToAction("Sendbox");
+			}
+			else
+			{
+				return RedirectToAction("TrashMessages"); // Varsayılan olarak Çöp Kutusuna git
+			}
+		}
+
+		public ActionResult TrashMessages()
+		{
+			var values = manager.GetTrashMessages().ToList();
+			return View(values);
 		}
 	}
 }

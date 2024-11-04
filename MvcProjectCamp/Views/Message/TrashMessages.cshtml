@@ -1,7 +1,6 @@
-﻿@using EntityLayer.Concrete
-@model List<Message>
+﻿@model List<EntityLayer.Concrete.Message>
 @{
-    ViewBag.Title = "Inbox";
+    ViewBag.Title = "TrashMessages";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -29,7 +28,7 @@
             <div class="col-md-9">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title">Gelen Mesajlar</h3>
+                        <h3 class="card-title">Çöp Kutusu</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" placeholder="Mail Ara">
@@ -45,7 +44,6 @@
                     <!-- /.card-header -->
                     <div class="card-body p-0">
                         <form method="post" action="/Message/DeleteMessages">
-                            <input type="hidden" name="redirectView" value="Inbox" />
                             <div class="mailbox-controls">
                                 <!-- Check all button -->
                                 <button type="button" class="btn btn-default btn-sm checkbox-toggle">
@@ -82,7 +80,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                                <td class="mailbox-name"><a href="/Message/GetInboxMessageDetails/@item.MessageId">@item.SenderMail</a></td>
+                                                <td class="mailbox-name"><a href="#">@item.SenderMail</a></td>
                                                 <td class="mailbox-subject">
                                                     <b>@item.Subject</b> - @item.MessageContent.Substring(0, 10)...
                                                 </td>
@@ -119,4 +117,5 @@
 </body>
 
 </html>
+
 
