@@ -13,9 +13,9 @@ namespace BusinessLayer.Abstract
 		List<Message> GetListSendbox();
 		void MessageAdd(Message message);
 		Message GetById(int id);
-
 		void DeleteMessages(List<int> messageIds); // Çoklu silme metodu
 		List<Message> GetTrashMessages();
-		void MessageUpdate(Message message);
+		List<Message> GetDraftMessages();
+		
 	}
 }

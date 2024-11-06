@@ -1,6 +1,6 @@
 ﻿@model EntityLayer.Concrete.Message
 @{
-    ViewBag.Title = "NewMessage";
+    ViewBag.Title = "DraftDetail";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -59,7 +59,8 @@
                             </div>
                             <div class="form-group">
                                 <textarea id="compose-textarea" class="form-control" name="MessageContent" style="height: 300px">
-                            
+                            @*@Html.TextAreaFor(x=>x.MessageContent, new { @class = "form-control"})*@
+@Html.Raw(Model.MessageContent) <!-- HTML içeriği Summernote'a yüklenir -->
                     </textarea>
                             </div>
                             <div class="form-group">
@@ -72,19 +73,10 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-
-                            <div class="float-right ml-2">
+                            <div class="float-right">
+                                @*<button type="submit" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Taslaklara Kaydet</button>*@
                                 <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Gönder</button>
                             </div>
-
-
-                            <div class="float-right">
-                                <button type="submit" formaction="@Url.Action("SaveDraft", "Message")" formmethod="post" class="btn btn-default">
-                                    <i class="fas fa-pencil-alt"></i> Taslaklara Kaydet
-                                </button>
-                            </div>
-
-
                             <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> İptal Et</button>
                         </div>
                         <!-- /.card-footer -->
@@ -105,40 +97,23 @@
 </body>
 </html>
 
-@* Biçimlenmiş metini taslak olarak kaydetmek için*@
+@* Biçimlenmiş metini taslak olarak göstermek için*@
 <script>
     $(document).ready(function () {
         $('#compose-textarea').summernote({
             height: 300, // Editör yüksekliği
             placeholder: 'Mesajınızı buraya yazın...',
             toolbar: [
-                // İstediğiniz toolbar seçeneklerini belirleyin
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-    });
 
-
-    $('#saveDraftButton').on('click', function (e) {
-        e.preventDefault(); // Sayfanın yenilenmesini önler
-        var mesajIcerigi = $('#compose-textarea').summernote('code'); // HTML içeriği al
-
-        // AJAX ile sunucuya kaydetme isteği gönderin
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("SaveDraft", "Message")',
-            data: {
-                ReceiverMail: $('#ReceiverMail').val(),
-                Subject: $('#Subject').val(),
-                MessageContent: mesajIcerigi
-            },
-            success: function (response) {
-                alert("Mesaj taslak olarak kaydedildi.");
-            }
-        });
+        // Daha önce kaydedilmiş içeriği Summernote'a yükleyin
+        var kaydedilmisIcerik = '@Html.Raw(Model.MessageContent)';
+        $('#compose-textarea').summernote('code', kaydedilmisIcerik);
     });
 </script>
 

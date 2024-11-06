@@ -26,6 +26,7 @@ namespace MvcProjectCamp.Controllers
 			ViewBag.inboxMessageCount = messageManager.GetListInbox().Count;
 			ViewBag.sendMessageCount = messageManager.GetListSendbox().Count;
 			ViewBag.trashMessages = messageManager.GetTrashMessages().Count();
+			ViewBag.draftMessageCount = messageManager.GetDraftMessages().Count();
 
 			return PartialView();
 		}

@@ -55,11 +55,11 @@ namespace BusinessLayer.Concrete
 		{
 			return _messageDal.List(x => x.IsDeleted == true);
 		}
+	
 
-		public void MessageUpdate(Message message)
+		public List<Message> GetDraftMessages()
 		{
-			throw new NotImplementedException();
+			return _messageDal.List(x=>x.IsDraft == true);
 		}
-
 	}
 }

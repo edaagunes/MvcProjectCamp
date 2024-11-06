@@ -38,12 +38,14 @@ namespace MvcProjectCamp.Controllers
 		}
 
 		[HttpGet]
+		[ValidateInput(false)]
 		public ActionResult NewMessage()
 		{
 			return View();
 		}
 
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult NewMessage(Message message)
 		{
 			ValidationResult results = validationRules.Validate(message);
@@ -87,6 +89,30 @@ namespace MvcProjectCamp.Controllers
 		{
 			var values = manager.GetTrashMessages().ToList();
 			return View(values);
+		}
+
+		[HttpGet]
+		public ActionResult DraftList()
+		{
+			var draftMessages=manager.GetDraftMessages();
+			return View(draftMessages);
+		}
+		[ValidateInput(false)]
+		public ActionResult DraftDetail(int id)
+		{
+			var values=manager.GetById(id);
+			return View(values);
+		}
+
+		[HttpPost]
+		[ValidateInput(false)]
+		public ActionResult SaveDraft(Message message)
+		{
+			message.MessageDate = DateTime.Now;
+			message.IsDraft = true;
+			manager.MessageAdd(message);
+			return RedirectToAction("DraftList");
+			//return Json(new { success = true });
 		}
 	}
 }
