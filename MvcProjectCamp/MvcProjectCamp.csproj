@@ -148,6 +148,7 @@
     <Compile Include="Controllers\AdminStatisticController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\ProfileCardController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2387,6 +2388,17 @@
     <Content Include="login-form-19\scss\bootstrap\_utilities.scss" />
     <Content Include="login-form-19\scss\bootstrap\_variables.scss" />
     <Content Include="login-form-19\scss\style.scss" />
+    <Content Include="web\css\style.css" />
+    <Content Include="web\images\5.jpg" />
+    <Content Include="web\images\img1.jpg" />
+    <Content Include="web\images\sprite.png" />
+    <Content Include="web\images\me.jpeg" />
+    <Content Include="web\index.html" />
+    <Content Include="web\js\bars.js" />
+    <Content Include="web\js\easyResponsiveTabs.js" />
+    <Content Include="web\js\jquery-1.11.1.min.js" />
+    <Content Include="web\js\jquery.circlechart.js" />
+    <Content Include="web\w3layouts-License.txt" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -2442,6 +2454,7 @@
     <Content Include="Views\ErrorPage\Page404.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\ProfileCard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

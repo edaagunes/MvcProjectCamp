@@ -58,6 +58,7 @@
     <Compile Include="Abstract\IHeadingDal.cs" />
     <Compile Include="Abstract\IImageFileDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
+    <Compile Include="Abstract\IProfileDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
     <Compile Include="EntityFramework\EfImageFileDal.cs" />
     <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfProfileDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202411021645588_mig1.cs" />
     <Compile Include="Migrations\202411021645588_mig1.Designer.cs">
@@ -122,6 +124,14 @@
     <Compile Include="Migrations\202411061223024_mig13.Designer.cs">
       <DependentUpon>202411061223024_mig13.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411061328422_mig14.cs" />
+    <Compile Include="Migrations\202411061328422_mig14.Designer.cs">
+      <DependentUpon>202411061328422_mig14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411061341384_mig15.cs" />
+    <Compile Include="Migrations\202411061341384_mig15.Designer.cs">
+      <DependentUpon>202411061341384_mig15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -174,6 +184,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411061223024_mig13.resx">
       <DependentUpon>202411061223024_mig13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411061328422_mig14.resx">
+      <DependentUpon>202411061328422_mig14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411061341384_mig15.resx">
+      <DependentUpon>202411061341384_mig15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
