@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,8 +11,12 @@ using System.Web.Security;
 
 namespace MvcProjectCamp.Controllers
 {
+	[AllowAnonymous]
 	public class LoginController : Controller
 	{
+		AdminManager adminManager=new AdminManager(new EfAdminDal());
+		Context context=new Context();
+
 		[HttpGet]
 		public ActionResult Index()
 		{
@@ -29,9 +35,16 @@ namespace MvcProjectCamp.Controllers
 			}
 			else
 			{
+				ViewBag.ErrorMessage = "Kullanıcı Adı veya Şifreniz Yanlış!";
 				return RedirectToAction("Index");
 			}
-		
+		}
+
+		public ActionResult LogOut()
+		{
+			FormsAuthentication.SignOut();
+			Session.Abandon();
+			return RedirectToAction("Index", "Login");
 		}
 	}
 }

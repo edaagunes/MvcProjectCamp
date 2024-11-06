@@ -138,6 +138,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminCategoryController.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
@@ -2022,6 +2023,7 @@
     <Content Include="login-form-19\css\bootstrap\_media.css" />
     <Content Include="login-form-19\css\style.css" />
     <Content Include="login-form-19\images\bg.jpg" />
+    <Content Include="login-form-19\images\login.jpg" />
     <Content Include="login-form-19\index.html" />
     <Content Include="login-form-19\js\bootstrap.min.js" />
     <Content Include="login-form-19\js\jquery.min.js" />
@@ -2455,6 +2457,9 @@
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\ProfileCard\Index.cshtml" />
+    <Content Include="Views\Authorization\Index.cshtml" />
+    <Content Include="Views\Authorization\AddAdmin.cshtml" />
+    <Content Include="Views\Authorization\EditAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
