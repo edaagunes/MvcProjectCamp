@@ -15,6 +15,7 @@ namespace MvcProjectCamp.Controllers
 	{
 		MessageManager manager = new MessageManager(new EfMessageDal());
 		MessageValidator validationRules = new MessageValidator();
+		[Authorize]
 		public ActionResult Inbox()
 		{
 			var messageList = manager.GetListInbox();
