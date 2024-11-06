@@ -54,11 +54,10 @@
 
                                 <div class="btn-group">
                                     <button href="#" type="submit" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
+
                                 </div>
-                                <!-- /.btn-group -->
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
+                                <!-- /.btn-group -->                    
+                                <label style="color:lightcoral;margin-left:15px" class="btn btn-outline-light">Okunmamış Mesaj Sayısı: @ViewBag.unreadMessage</label>
                                 <div class="float-right">
                                     1-50/200
                                     <div class="btn-group">
@@ -86,7 +85,19 @@
                                                 <td class="mailbox-subject">
                                                     <b>@item.Subject</b> - @item.MessageContent.Substring(0, 10)...
                                                 </td>
-                                                <td class="mailbox-attachment"></td>
+                                                <td class="mailbox-attachment">
+                                                    <!-- Okundu durumu kontrolü ve zarf ikonunun değişimi -->
+                                                    <a href="@Url.Action("ToggleReadStatus", "Message", new { id = item.MessageId })">
+                                                        @if (item.IsRead)
+                                                        {
+                                                            <i class="fas fa-envelope-open text-success"></i> <!-- Okunmuş, açık zarf -->
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="fas fa-envelope text-danger"></i> <!-- Okunmamış, kapalı zarf -->
+                                                        }
+                                                    </a>
+                                                </td>
                                                 <td class="mailbox-date">@Convert.ToDateTime(item.MessageDate).ToString("dd/MMM/yyyy")</td>
                                             </tr>
                                         }

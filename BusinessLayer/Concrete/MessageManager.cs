@@ -38,6 +38,11 @@ namespace BusinessLayer.Concrete
 			_messageDal.Insert(message);
 		}
 
+		public void MessageUpdate(Message message)
+		{
+			_messageDal.Update(message);
+		}
+
 		// Çoklu silme işlemi
 		public void DeleteMessages(List<int> messageIds)
 		{
@@ -62,6 +67,14 @@ namespace BusinessLayer.Concrete
 			return _messageDal.List(x=>x.IsDraft == true);
 		}
 
-
+		public void ToggleReadStatus(int messageId)
+		{
+			var message = _messageDal.Get(x => x.MessageId == messageId);
+			if (message != null)
+			{
+				message.IsRead = !message.IsRead;  // Mevcut durumu tersine çevirir
+				_messageDal.Update(message);  // Güncellenmiş mesajı kaydeder
+			}
+		}
 	}
 }

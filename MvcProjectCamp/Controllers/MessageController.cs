@@ -19,6 +19,7 @@ namespace MvcProjectCamp.Controllers
 		public ActionResult Inbox()
 		{
 			var messageList = manager.GetListInbox();
+			ViewBag.unreadMessage=messageList.Where(x=>x.IsRead==false).Count();
 			return View(messageList);
 		}
 
@@ -29,9 +30,19 @@ namespace MvcProjectCamp.Controllers
 		}
 		public ActionResult GetInboxMessageDetails(int id)
 		{
+			// Mesajı veritabanından al
 			var values = manager.GetById(id);
-			return View(values);
+
+			// Eğer mesaj okunmamışsa, okundu olarak işaretle
+			if (values != null && !values.IsRead)
+			{
+				values.IsRead = true;  // Mesaj okundu olarak işaretlendi
+				manager.MessageUpdate(values);  // Güncellenmiş mesajı kaydet
+			}
+
+			return View(values);  // Mesajın detaylarını görüntüle
 		}
+
 		public ActionResult GetSendboxMessageDetails(int id)
 		{
 			var values = manager.GetById(id);
@@ -114,6 +125,13 @@ namespace MvcProjectCamp.Controllers
 			manager.MessageAdd(message);
 			return RedirectToAction("DraftList");
 			//return Json(new { success = true });
+		}
+
+		public ActionResult ToggleReadStatus(int id)
+		{
+			manager.ToggleReadStatus(id);  // Mesajın okundu/okunmadı durumunu değiştir
+
+			return RedirectToAction("Inbox");  // Inbox sayfasına yönlendir
 		}
 	}
 }

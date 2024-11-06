@@ -12,10 +12,13 @@ namespace BusinessLayer.Abstract
 		List<Message> GetListInbox();
 		List<Message> GetListSendbox();
 		void MessageAdd(Message message);
+		void MessageUpdate(Message message);
 		Message GetById(int id);
 		void DeleteMessages(List<int> messageIds); // Çoklu silme metodu
 		List<Message> GetTrashMessages();
 		List<Message> GetDraftMessages();
-		
+		void ToggleReadStatus(int messageId);
+
+
 	}
 }
