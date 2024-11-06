@@ -141,6 +141,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\HeadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminStatisticController.cs" />
@@ -1986,6 +1987,10 @@
     <Content Include="AdminLTE-3.0.4\plugins\toastr\toastr.min.css" />
     <Content Include="AdminLTE-3.0.4\plugins\toastr\toastr.min.js" />
     <Content Include="AdminLTE-3.0.4\starter.html" />
+    <Content Include="colorlib-error-404-10\css\style.css" />
+    <Content Include="colorlib-error-404-10\img\bg.jpg" />
+    <Content Include="colorlib-error-404-10\index.html" />
+    <Content Include="colorlib-error-404-10\readme.txt" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -2318,6 +2323,7 @@
     <Content Include="Views\Message\TrashMessages.cshtml" />
     <Content Include="Views\Message\DraftList.cshtml" />
     <Content Include="Views\Message\DraftDetail.cshtml" />
+    <Content Include="Views\ErrorPage\Page404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

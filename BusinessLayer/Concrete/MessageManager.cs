@@ -61,5 +61,7 @@ namespace BusinessLayer.Concrete
 		{
 			return _messageDal.List(x=>x.IsDraft == true);
 		}
+
+
 	}
 }
