@@ -1,0 +1,143 @@
+﻿@using EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Heading>
+@{
+    ViewBag.Title = "AllHeading";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    string color = "";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .badge-lg {
+            font-size: 0.9rem; /* Yazı boyutunu artır */
+            padding: 0.5em 0.75em; /* İçerik boşluğunu artır */
+            border-radius: 0.5rem; /* Kenar yuvarlama */
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+
+            <div class="card-body p-0">
+                <table class="table table-hover projects">
+                    <thead>
+                        <tr style="background-color: lightsteelblue;">
+                            <th style="width: 1%; color: white">
+                                #
+                            </th>
+                            <th style="width: 20%; color: white">
+                                Başlık Adı
+                            </th>
+                            <th style="width: 15%; color: white">
+                                Oluşturan Yazar
+                            </th>
+
+                            <th style="width: 8%; color: white" class="text-center">
+                                Kategori
+                            </th>
+                            <th style="width: 25%">
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            // Kategoriye göre renk belirleme
+                            switch (item.Category.CategoryName)
+                            {
+                                case "Eğitim":
+                                    color = "badge badge-primary badge-lg"; // Mavi
+                                    break;
+                                case "Tiyatro":
+                                    color = "badge badge-danger badge-lg"; // Kırmızı
+                                    break;
+                                case "Kitap":
+                                    color = "badge badge-secondary badge-lg"; // Gri
+                                    break;
+                                case "Spor":
+                                    color = "badge badge-info badge-lg"; // Turkuaz
+                                    break;
+                                case "Film":
+                                    color = "badge badge-warning badge-lg"; // Sarı
+                                    break;
+                                case "Dizi":
+                                    color = "badge badge-success badge-lg"; // Yeşil
+                                    break;
+                                case "Sosyal Medya":
+                                    color = "badge badge-dark badge-lg"; // Koyu
+                                    break;
+                                case "Yazılım":
+                                    color = "badge badge-light badge-lg"; // Açık
+                                    break;
+                                case "Seyahat":
+                                    color = "badge badge-primary badge-lg"; // Mavi
+                                    break;
+                                default:
+                                    color = "badge badge-secondary badge-lg"; // Varsayılan gri
+                                    break;
+                            }
+                            <tr>
+                                <td>
+                                    @item.HeadingId
+                                </td>
+                                <td>
+                                    <a>
+                                        <b>
+                                            @item.HeadingName
+                                        </b>
+                                    </a>
+                                    <br />
+                                    <small>
+                                        @Convert.ToDateTime(item.HeadingDate).ToString("dd/MM/yyyy")
+                                    </small>
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
+                                        </li>
+                                    </ul>
+                                </td>
+
+                                <td class="project-state">
+                                    <span class="@color">@item.Category.CategoryName</span>
+                                </td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/Default/Heading/@item.HeadingId">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        İçerik
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="/WriterPanelContent/AddContent/@item.HeadingId">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Bu Başlığa Yaz
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("AllHeading", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    { "page-link"}
+})

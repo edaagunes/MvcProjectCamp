@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Sözlük | Sayfası</title>
+    <title>Sözlük | Site</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
     <!-- IonIcons -->
@@ -80,7 +80,7 @@ to get the desired effect
                         @foreach (var item in Model)
                         {
                             <li class="nav-item">
-                                <a href="/WriterPanel/MyHeading" class="nav-link">
+                                <a href="/Default/Heading/@item.HeadingId" class="nav-link">
                                     <i class="nav-icon fas fa-th-list"></i>
                                     <p>
                                         @item.HeadingName

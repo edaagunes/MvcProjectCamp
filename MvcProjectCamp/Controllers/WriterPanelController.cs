@@ -7,31 +7,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProjectCamp.Controllers
 {
-    public class WriterPanelController : Controller
-    {
+	public class WriterPanelController : Controller
+	{
 		HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
 		CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 		Context context = new Context();
-	
-		public ActionResult WriterProfile()
-        {
-            return View();
-        }
 
-        public ActionResult MyHeading(string p)
-        {
-			
+		public ActionResult WriterProfile()
+		{
+			return View();
+		}
+
+		public ActionResult MyHeading(string p)
+		{
+
 			p = (string)Session["WriterMail"];
-			var writerIdInfo = context.Writers.Where(x=>x.WriterMail == p).Select(y=>y.WriterId).FirstOrDefault();
-            var values = headingManager.GetListByWriter(writerIdInfo);
-            return View(values);
-        }
-        [HttpGet]
-        public ActionResult NewHeading()
-        {
+			var writerIdInfo = context.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterId).FirstOrDefault();
+			var values = headingManager.GetListByWriter(writerIdInfo);
+			return View(values);
+		}
+		[HttpGet]
+		public ActionResult NewHeading()
+		{
 			List<SelectListItem> valueCategory = (from x in categoryManager.GetList()
 												  select new SelectListItem
 												  {
@@ -40,8 +42,8 @@ namespace MvcProjectCamp.Controllers
 												  }).ToList();
 			ViewBag.valueCategory = valueCategory;
 			return View();
-        }
-        [HttpPost]
+		}
+		[HttpPost]
 		public ActionResult NewHeading(Heading heading)
 		{
 			string writerMailInfo = (string)Session["WriterMail"];
@@ -81,5 +83,12 @@ namespace MvcProjectCamp.Controllers
 			headingManager.HeadingDelete(headingValue);
 			return RedirectToAction("MyHeading");
 		}
+
+		public ActionResult AllHeading(int page=1)
+		{
+			var headings = headingManager.GetList().ToPagedList(page,8);
+			return View(headings);
+		}
+
 	}
 }
