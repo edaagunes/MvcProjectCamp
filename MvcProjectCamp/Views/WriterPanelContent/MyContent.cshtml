@@ -1,9 +1,11 @@
 ﻿@using EntityLayer.Concrete
 @model List<Content>
 @{
-    ViewBag.Title = "ContentByHeading";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "MyContent";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
+
+
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,7 @@
                                 <div>
                                     <i class="fas fa-comment bg-yellow"></i>
                                     <div class="timeline-item">
-                                        <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurname</a></h3>
+                                        <h3 class="timeline-header"><a href="#">@item.Heading.HeadingName</a></h3>
                                         <div class="timeline-body">
                                             @item.ContentValue
                                         </div>
@@ -49,3 +51,4 @@
     <!-- ./wrapper -->
 </body>
 </html>
+

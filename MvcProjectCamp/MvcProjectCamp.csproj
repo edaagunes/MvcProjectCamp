@@ -151,6 +151,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\ProfileCardController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
+    <Compile Include="Controllers\WriterPanelContentController.cs" />
     <Compile Include="Controllers\WriterPanelController.cs" />
     <Compile Include="Controllers\WriterPanelMessageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2470,6 +2471,13 @@
     <Content Include="Views\WriterPanelMessage\Inbox.cshtml" />
     <Content Include="Views\WriterPanelMessage\MessageMenuPartial.cshtml" />
     <Content Include="Views\WriterPanelMessage\Sendbox.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GetInboxMessageDetails.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GetSendboxMessageDetails.cshtml" />
+    <Content Include="Views\WriterPanelMessage\TrashMessages.cshtml" />
+    <Content Include="Views\WriterPanelMessage\DraftList.cshtml" />
+    <Content Include="Views\WriterPanelMessage\DraftDetail.cshtml" />
+    <Content Include="Views\WriterPanelMessage\NewMessage.cshtml" />
+    <Content Include="Views\WriterPanelContent\MyContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
