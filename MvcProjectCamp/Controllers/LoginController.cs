@@ -62,6 +62,8 @@ namespace MvcProjectCamp.Controllers
 			{
 				FormsAuthentication.SetAuthCookie(writerUserInfo.WriterMail, false);
 				Session["WriterMail"] = writerUserInfo.WriterMail;
+				Session["WriterName"] = writerUserInfo.WriterName+" "+writerUserInfo.WriterSurname;
+				Session["WriterImage"] = writerUserInfo.WriterImage;
 				return RedirectToAction("MyHeading", "WriterPanel");
 			}
 			else
@@ -69,6 +71,14 @@ namespace MvcProjectCamp.Controllers
 				ViewBag.ErrorMessage = "Kullanıcı Adı veya Şifreniz Yanlış!";
 				return RedirectToAction("WriterLogin");
 			}
+		}
+
+		[HttpGet]
+		public ActionResult WriterLogout()
+		{
+			FormsAuthentication.SignOut();
+			Session.Abandon();
+			return RedirectToAction("WriterLogin", "Login");
 		}
 	}
 }

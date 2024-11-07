@@ -1,7 +1,8 @@
-﻿
+﻿@model List<EntityLayer.Concrete.Heading>
 @{
     Layout = null;
 }
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Sözlük | Yazar Sayfası</title>
+    <title>Sözlük | Sayfası</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
     <!-- IonIcons -->
@@ -67,79 +68,27 @@ to get the desired effect
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="@Session["WriterImage"]" class="img-circle elevation-2" alt="User Image">
+                        <img src="~/login-form-20/images/logo.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">@Session["WriterName"]</a>
+                        <a href="#" class="d-block" style="color: lightgreen ">BAŞLIKLAR</a>
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview">
-                            <a href="/AdminCategory/Index" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Profilim
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/WriterPanel/MyHeading" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Başlıklarım
-                                </p>
-                            </a>
-                        </li>
-                       
-                        <li class="nav-item has-treeview">
-                            <a href="/WriterPanelMessage/Inbox" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    Mesajlar
-                                </p>
-                            </a>
-
-                        </li>
-
-                       
+                        @foreach (var item in Model)
+                        {
                             <li class="nav-item">
-                                <a href="/WriterPanelContent/MyContent" class="nav-link">
-                                    <i class="nav-icon fas fa-calendar-alt"></i>
+                                <a href="/WriterPanel/MyHeading" class="nav-link">
+                                    <i class="nav-icon fas fa-th-list"></i>
                                     <p>
-                                        Yazılarım
+                                        @item.HeadingName
                                     </p>
                                 </a>
                             </li>
-                                               
-                        <li class="nav-item has-treeview">
-                            <a href="/ProfileCard/Index" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Profil Kartı
-                                </p>
-                            </a>
-
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Siteye Git
-                                </p>
-                            </a>
-
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="/Login/WriterLogout" class="nav-link">
-                                <i class="nav-icon fas fa-door-closed"></i>
-                                <p>
-                                    Çıkış Yap
-                                </p>
-                            </a>
+                        }
+                        
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -149,8 +98,9 @@ to get the desired effect
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Main content -->
+            @Html.Action("Index","Default")
             <div class="content">
-                @RenderBody()
+
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content -->
@@ -178,5 +128,6 @@ to get the desired effect
     </script>
 </body>
 </html>
+
 
 

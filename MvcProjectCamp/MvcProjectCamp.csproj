@@ -142,6 +142,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HeadingController.cs" />
@@ -2043,6 +2044,8 @@
     <Content Include="login-form-20\css\bootstrap\_media.css" />
     <Content Include="login-form-20\css\style.css" />
     <Content Include="login-form-20\images\bg.jpg" />
+    <Content Include="login-form-20\images\landscape-2943779_1280.jpg" />
+    <Content Include="login-form-20\images\logo.png" />
     <Content Include="login-form-20\index.html" />
     <Content Include="login-form-20\js\bootstrap.min.js" />
     <Content Include="login-form-20\js\jquery.min.js" />
@@ -2594,6 +2597,8 @@
     <Content Include="Views\WriterPanelMessage\NewMessage.cshtml" />
     <Content Include="Views\WriterPanelContent\MyContent.cshtml" />
     <Content Include="Views\Login\WriterLogin.cshtml" />
+    <Content Include="Views\Default\Heading.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
