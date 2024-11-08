@@ -38,6 +38,16 @@ namespace BusinessLayer.Concrete
 			throw new NotImplementedException();
 		}
 
+		public Dictionary<string, int> GetContentCountByHeading()
+		{
+			// Başlık ID'sine göre içerikleri gruplama ve her başlığın içerik sayısını alma
+			var contentCounts = _contentDal.List()
+				.GroupBy(c => c.Heading.HeadingName) // Başlık ismine göre gruplama
+				.ToDictionary(g => g.Key, g => g.Count()); // Başlık adı ve içerik sayısını alıyoruz
+
+			return contentCounts;
+		}
+
 		public List<Content> GetList(string p)
 		{
 			return _contentDal.List(x=>x.ContentValue.Contains(p));

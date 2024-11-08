@@ -20,7 +20,14 @@ namespace BusinessLayer.Concrete
 
 		public Heading GetById(int id)
 		{
-			return _headingDal.Get(x=>x.HeadingId == id);
+			return _headingDal.Get(x => x.HeadingId == id);
+		}
+
+		public Dictionary<string, int> GetHeadingCountByCategory()
+		{
+			return _headingDal.List()
+						.GroupBy(h => h.Category.CategoryName)  // Başlıkları kategori adına göre grupla
+						.ToDictionary(g => g.Key, g => g.Count());  // Her kategoriye ait başlık sayısını al
 		}
 
 		public List<Heading> GetList()
@@ -35,7 +42,7 @@ namespace BusinessLayer.Concrete
 
 		public List<Heading> GetListByWriter(int id)
 		{
-			return _headingDal.List(x=>x.WriterId == id);
+			return _headingDal.List(x => x.WriterId == id);
 		}
 
 		public void HeadingAdd(Heading heading)

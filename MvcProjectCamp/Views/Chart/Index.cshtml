@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<br />
+<style>
+    .chart-container {
+        display: flex;
+        justify-content: space-between; /* Grafiklerin yan yana sıralanmasını sağlar */
+        margin-top: 20px;
+        flex-wrap: wrap; /* Ekran boyutuna göre grafiklerin alt satıra geçmesini sağlar */
+    }
+
+    .chart-card {
+        width: 48%; /* Kart genişliğini sınırlayarak yan yana iki grafik yapar */
+        margin: 10px 0; /* Kartlar arasına dikey boşluk ekler */
+    }
+
+    canvas {
+        width: 100%; /* Grafiğin genişliğini kapsayıcıya uyarlar */
+        height: 300px; /* Grafiklerin yüksekliğini ayarladık */
+    }
+</style>
+
+<div class="chart-container">
+    <div class="chart-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Kategoriye Göre Başlıklar (Pie Chart)</h4>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="chart-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Başlıklara Eklenen İçerikler (Line Chart)</h4>
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Pie Chart için veri yükleme ve oluşturma
+        $.ajax({
+            url: '@Url.Action("HeadingCountByCategory", "Chart")',
+            method: 'GET',
+            success: function (data) {
+                var pieCtx = document.getElementById('pieChart').getContext('2d');
+                var labels = Object.keys(data);
+                var values = Object.values(data);
+
+                new Chart(pieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: values,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'top' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (tooltipItem) {
+                                        return labels[tooltipItem.dataIndex] + ': ' + values[tooltipItem.dataIndex];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        // Line Chart için veri yükleme ve oluşturma
+        $.ajax({
+            url: '@Url.Action("ContentCountByHeading", "Chart")',
+            method: 'GET',
+            success: function (data) {
+                var ctx = document.getElementById('lineChart').getContext('2d');
+                var labels = Object.keys(data); // Başlık isimleri
+                var values = Object.values(data); // İçerik sayıları
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'İçerik Sayısı',
+                            data: values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: { title: { display: true, text: 'Başlıklar' } },
+                            y: { title: { display: true, text: 'İçerik Sayısı' } }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

@@ -13,6 +13,7 @@ namespace BusinessLayer.Abstract
 		List<Content> GetList();
 		List<Content> GetListByWriter(int id);
 		List<Content> GetListByHeadingId(int id);
+		Dictionary<string, int> GetContentCountByHeading();
 		void ContentAdd(Content content);
 		Content GetById(int id);
 
