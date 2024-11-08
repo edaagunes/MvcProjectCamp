@@ -38,6 +38,11 @@ namespace BusinessLayer.Concrete
 			throw new NotImplementedException();
 		}
 
+		public List<Content> GetList(string p)
+		{
+			return _contentDal.List(x=>x.ContentValue.Contains(p));
+		}
+
 		public List<Content> GetList()
 		{
 			return _contentDal.List();

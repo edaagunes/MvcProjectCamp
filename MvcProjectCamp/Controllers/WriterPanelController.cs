@@ -10,7 +10,6 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
-using BusinessLayer.ValidationRules;
 using FluentValidation.Results;
 
 namespace MvcProjectCamp.Controllers
@@ -20,6 +19,7 @@ namespace MvcProjectCamp.Controllers
 		HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
 		CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 		WriterManager writerManager = new WriterManager(new EfWriterDal());
+		ContentManager contentManager = new ContentManager(new EfContentDal());
 		WriterValidator writerValidator = new WriterValidator();
 
 		Context context = new Context();
@@ -60,6 +60,13 @@ namespace MvcProjectCamp.Controllers
 			var values = headingManager.GetListByWriter(writerIdInfo);
 			return View(values);
 		}
+
+		public ActionResult ContentByHeading(int id)
+		{
+			var contentValues = contentManager.GetListByHeadingId(id);
+			return View(contentValues);
+		}
+
 		[HttpGet]
 		public ActionResult NewHeading()
 		{

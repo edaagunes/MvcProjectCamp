@@ -8,6 +8,11 @@ namespace MvcProjectCamp.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
+        public ActionResult HomePage()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             return View();
