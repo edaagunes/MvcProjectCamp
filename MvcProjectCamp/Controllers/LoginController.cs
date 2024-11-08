@@ -49,7 +49,7 @@ namespace MvcProjectCamp.Controllers
 		{
 			FormsAuthentication.SignOut();
 			Session.Abandon();
-			return RedirectToAction("Index", "Login");
+			return RedirectToAction("AdminLogin", "Login");
 		}
 
 		[HttpGet]

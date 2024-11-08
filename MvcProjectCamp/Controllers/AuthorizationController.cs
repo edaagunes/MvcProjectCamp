@@ -9,44 +9,55 @@ using System.Web.Mvc;
 
 namespace MvcProjectCamp.Controllers
 {
-    public class AuthorizationController : Controller
-    {
-       AdminManager adminManager=new AdminManager(new EfAdminDal());
-        public ActionResult Index()
-        {
-            var adminValues = adminManager.GetAdminList();
-            return View(adminValues);
+	public class AuthorizationController : Controller
+	{
+		AdminManager adminManager = new AdminManager(new EfAdminDal());
+		public ActionResult Index()
+		{
+			var adminValues = adminManager.GetAdminList();
+			return View(adminValues);
+		}
+
+		[HttpGet]
+		public ActionResult AddAdmin()
+		{
+			return View();
+		}
+		[HttpPost]
+		public ActionResult AddAdmin(Admin admin)
+		{
+			adminManager.AdminAdd(admin);
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet]
+		public ActionResult EditAdmin(int id)
+		{
+			var adminValues = adminManager.GetByIdAdmin(id);
+			var adminInfo=adminValues.AdminRole.ToString();
+			if (adminInfo == "A")
+			{
+				return View(adminValues);
+			}
+
+            else
+            {
+				return new HttpStatusCodeResult(System.Net.HttpStatusCode.Forbidden, "Yetkiniz yok.");
+			}
         }
 
-        [HttpGet]
-        public ActionResult AddAdmin()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddAdmin(Admin admin)
-        {
-            adminManager.AdminAdd(admin);
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public ActionResult EditAdmin(int id) {
-            var adminValues=adminManager.GetByIdAdmin(id);
-            return View(adminValues);
-        }
-
-        [HttpPost]
+		[HttpPost]
 		public ActionResult EditAdmin(Admin admin)
 		{
 			adminManager.AdminUpdate(admin);
-            return RedirectToAction("Index");
+			return RedirectToAction("Index");
 		}
 
-        public ActionResult DeleteAdmin(int id) {
-            var result = adminManager.GetByIdAdmin(id);
-            adminManager.AdminDelete(result);
-            return RedirectToAction("Index");
-        }
+		public ActionResult DeleteAdmin(int id)
+		{
+			var result = adminManager.GetByIdAdmin(id);
+			adminManager.AdminDelete(result);
+			return RedirectToAction("Index");
+		}
 	}
 }
