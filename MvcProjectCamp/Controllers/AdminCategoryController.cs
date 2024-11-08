@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace MvcProjectCamp.Controllers
@@ -14,11 +15,19 @@ namespace MvcProjectCamp.Controllers
 	public class AdminCategoryController : Controller
 	{
 		CategoryManager manager = new CategoryManager(new EfCategoryDal());
+		HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
 		public ActionResult Index()
 		{
 			var categoryValues = manager.GetList();
 			return View(categoryValues);
 		}
+		public ActionResult HeadingByCategory(int id)
+		{
+			var headings = headingManager.GetListByCategory(id);
+			return View(headings);
+		}
+
+
 
 		[HttpGet]
 		public ActionResult AddCategory()

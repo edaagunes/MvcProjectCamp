@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete.Repositories;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -44,5 +45,6 @@ namespace BusinessLayer.Concrete
 		{
 			return _categoryDal.List();
 		}
+
 	}
 }

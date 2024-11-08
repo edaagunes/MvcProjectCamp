@@ -15,18 +15,23 @@ namespace MvcProjectCamp.Controllers
 	public class LoginController : Controller
 	{
 		AdminManager adminManager=new AdminManager(new EfAdminDal());
+		WriterLoginManager writerLoginManager=new WriterLoginManager(new EfWriterDal());
+		AdminLoginManager adminLoginManager=new AdminLoginManager(new EfAdminDal());
 		Context context=new Context();
 
 		[HttpGet]
-		public ActionResult Index()
+		public ActionResult AdminLogin()
 		{
 			return View();
 		}
 		[HttpPost]
-		public ActionResult Index(Admin admin)
+		public ActionResult AdminLogin(Admin admin)
 		{
-			Context c = new Context();
-			var adminUserInfo = c.Admins.FirstOrDefault(x => x.AdminUserName == admin.AdminUserName && x.AdminPassword == admin.AdminPassword);
+			//	Context c = new Context();
+			//	var adminUserInfo = c.Admins.FirstOrDefault(x => x.AdminUserName == admin.AdminUserName && x.AdminPassword == admin.AdminPassword);
+
+			var adminUserInfo = adminLoginManager.GetAdmin(admin.AdminUserName, admin.AdminPassword);
+
 			if (adminUserInfo != null)
 			{
 				FormsAuthentication.SetAuthCookie(adminUserInfo.AdminUserName, false);
@@ -56,8 +61,10 @@ namespace MvcProjectCamp.Controllers
 		[HttpPost]
 		public ActionResult WriterLogin(Writer writer)
 		{
-			Context c = new Context();
-			var writerUserInfo = c.Writers.FirstOrDefault(x => x.WriterMail == writer.WriterMail && x.WriterPassword == writer.WriterPassword);
+			//Context c = new Context();
+			//var writerUserInfo = c.Writers.FirstOrDefault(x => x.WriterMail == writer.WriterMail && x.WriterPassword == writer.WriterPassword);
+			var writerUserInfo=writerLoginManager.GetWriter(writer.WriterMail, writer.WriterPassword);
+
 			if (writerUserInfo != null)
 			{
 				FormsAuthentication.SetAuthCookie(writerUserInfo.WriterMail, false);

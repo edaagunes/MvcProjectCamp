@@ -17,7 +17,6 @@
         <th>Güncelle</th>
         <th>Başlıklar</th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
@@ -25,10 +24,13 @@
             <td>@item.CategoryName</td>
             <td><a href="/AdminCategory/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
             <td><a href="/AdminCategory/EditCategory/@item.CategoryId" class="btn btn-warning">Güncelle</a></td>
-            <td><a href="#" class="btn btn-primary">Başlıklar</a></td>
+            <td><a href="/AdminCategory/HeadingByCategory/@item.CategoryId" class="btn btn-primary">Başlıklar</a></td>
         </tr>
     }
 </table>
-<br />
+
+
 <a href="/AdminCategory/AddCategory" class="btn btn-info">Yeni Kategori</a>
-<br />
+
+
+

@@ -1,0 +1,34 @@
+﻿@using EntityLayer.Concrete
+@model List<Heading>
+
+@{
+    ViewBag.Title = "HeadingByCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@Html.ActionLink("Geri Dön", "Index", "AdminCategory", new { }, new { @class = "btn btn-outline-primary" })
+<br />
+<br />
+<h3>Kategoriye Ait Açılan Başlıklar</h3>
+
+<br />
+@if (Model != null && Model.Any())
+{
+    <table class="table table-active">
+        <tr>
+            <th>Kategori Adı</th>
+            <th>Başlıklar</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Category.CategoryName</td>
+                <td>@item.HeadingName</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Henüz bu kategoriye bir başlık eklenmemiş.</p>
+}
