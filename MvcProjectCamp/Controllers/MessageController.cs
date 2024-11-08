@@ -16,16 +16,16 @@ namespace MvcProjectCamp.Controllers
 		MessageManager manager = new MessageManager(new EfMessageDal());
 		MessageValidator validationRules = new MessageValidator();
 		[Authorize]
-		public ActionResult Inbox()
+		public ActionResult Inbox(string p)
 		{
-			var messageList = manager.GetListInbox();
+			var messageList = manager.GetListInbox(p);
 			ViewBag.unreadMessage=messageList.Where(x=>x.IsRead==false).Count();
 			return View(messageList);
 		}
 
-		public ActionResult Sendbox()
+		public ActionResult Sendbox(string p)
 		{
-			var messageList = manager.GetListSendbox();
+			var messageList = manager.GetListSendbox(p);
 			return View(messageList);
 		}
 		public ActionResult GetInboxMessageDetails(int id)
@@ -99,14 +99,16 @@ namespace MvcProjectCamp.Controllers
 
 		public ActionResult TrashMessages()
 		{
-			var values = manager.GetTrashMessages().ToList();
+			string p = (string)Session["WriterMail"];
+			var values = manager.GetTrashMessages(p).ToList();
 			return View(values);
 		}
 
 		[HttpGet]
 		public ActionResult DraftList()
 		{
-			var draftMessages=manager.GetDraftMessages();
+			string p = (string)Session["WriterMail"];
+			var draftMessages=manager.GetDraftMessages(p);
 			return View(draftMessages);
 		}
 		[ValidateInput(false)]

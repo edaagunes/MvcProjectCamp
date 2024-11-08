@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -18,23 +19,26 @@ namespace MvcProjectCamp.Controllers
 
 		public ActionResult Inbox()
 		{
-			var messageList = manager.GetListInbox();
+			string p = (string)Session["WriterMail"];
+			var messageList = manager.GetListInbox(p);
 			ViewBag.unreadMessage = messageList.Where(x => x.IsRead == false).Count();
 			return View(messageList);
 		}
 
 		public PartialViewResult MessageMenuPartial()
 		{
-			ViewBag.inboxMessageCount = manager.GetListInbox().Count;
-			ViewBag.sendMessageCount = manager.GetListSendbox().Count;
-			ViewBag.trashMessages = manager.GetTrashMessages().Count();
-			ViewBag.draftMessageCount = manager.GetDraftMessages().Count();
+			string p = (string)Session["WriterMail"];
+			ViewBag.inboxMessageCount = manager.GetListInbox(p).Count;
+			ViewBag.sendMessageCount = manager.GetListSendbox(p).Count;
+			ViewBag.trashMessages = manager.GetTrashMessages(p).Count();
+			ViewBag.draftMessageCount = manager.GetDraftMessages(p).Count();
 			return PartialView();
 		}
 
 		public ActionResult Sendbox()
 		{
-			var messageList = manager.GetListSendbox();
+			string p = (string)Session["WriterMail"];
+			var messageList = manager.GetListSendbox(p);
 			return View(messageList);
 		}
 
@@ -70,10 +74,11 @@ namespace MvcProjectCamp.Controllers
 		[ValidateInput(false)]
 		public ActionResult NewMessage(Message message)
 		{
+			string p = (string)Session["WriterMail"];
 			ValidationResult results = validationRules.Validate(message);
 			if (results.IsValid)
 			{
-				message.SenderMail = "kara@gmail.com";
+				message.SenderMail = p;
 				message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 				manager.MessageAdd(message);
 				return RedirectToAction("Sendbox");
@@ -91,6 +96,8 @@ namespace MvcProjectCamp.Controllers
 		[HttpPost]
 		public ActionResult DeleteMessages(List<int> messageIds, string redirectView)
 		{
+			string p = (string)Session["WriterMail"];
+
 			manager.DeleteMessages(messageIds);
 			// Silme işleminden sonra hangi sayfaya dönüleceğine karar ver
 			if (redirectView == "Inbox")
@@ -109,14 +116,16 @@ namespace MvcProjectCamp.Controllers
 
 		public ActionResult TrashMessages()
 		{
-			var values = manager.GetTrashMessages().ToList();
+			string p = (string)Session["WriterMail"];
+			var values = manager.GetTrashMessages(p).ToList();
 			return View(values);
 		}
 
 		[HttpGet]
 		public ActionResult DraftList()
 		{
-			var draftMessages = manager.GetDraftMessages();
+			string p = (string)Session["WriterMail"];
+			var draftMessages = manager.GetDraftMessages(p);
 			return View(draftMessages);
 		}
 		[ValidateInput(false)]
@@ -130,7 +139,8 @@ namespace MvcProjectCamp.Controllers
 		[ValidateInput(false)]
 		public ActionResult SaveDraft(Message message)
 		{
-			message.SenderMail = "kara@gmail.com";
+			string p = (string)Session["WriterMail"];
+			message.SenderMail = p;
 			message.MessageDate = DateTime.Now;
 			message.IsDraft = true;
 			manager.MessageAdd(message);

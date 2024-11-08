@@ -23,14 +23,14 @@ namespace BusinessLayer.Concrete
 			return _messageDal.Get(x => x.MessageId == id);
 		}
 
-		public List<Message> GetListInbox()
+		public List<Message> GetListInbox(string p)
 		{
-			return _messageDal.List(x => x.ReceiverMail == "kara@gmail.com" && x.IsDeleted==false);
+			return _messageDal.List(x => x.ReceiverMail == p && x.IsDeleted == false);
 		}
 
-		public List<Message> GetListSendbox()
+		public List<Message> GetListSendbox(string p)
 		{
-			return _messageDal.List(x => x.SenderMail == "kara@gmail.com" && x.IsDeleted == false);
+			return _messageDal.List(x => x.SenderMail == p && x.IsDeleted == false);
 		}
 
 		public void MessageAdd(Message message)
@@ -51,20 +51,20 @@ namespace BusinessLayer.Concrete
 				var message = _messageDal.Get(x => x.MessageId == id);
 				if (message != null)
 				{
-					message.IsDeleted = true; 
+					message.IsDeleted = true;
 					_messageDal.Update(message);
 				}
 			}
 		}
-		public List<Message> GetTrashMessages()
+		public List<Message> GetTrashMessages(string p)
 		{
-			return _messageDal.List(x => x.IsDeleted == true);
+			return _messageDal.List(x => x.SenderMail == p && x.IsDeleted == true);
 		}
-	
 
-		public List<Message> GetDraftMessages()
+
+		public List<Message> GetDraftMessages(string p)
 		{
-			return _messageDal.List(x=>x.IsDraft == true);
+			return _messageDal.List(x => x.SenderMail==p&& x.IsDraft == true);
 		}
 
 		public void ToggleReadStatus(int messageId)

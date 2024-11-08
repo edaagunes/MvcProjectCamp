@@ -20,13 +20,13 @@ namespace MvcProjectCamp.Controllers
 			return View(contactValues);
 		}
 
-		public PartialViewResult MessageMenuPartial()
+		public PartialViewResult MessageMenuPartial(string p)
 		{
 			ViewBag.messageCount = manager.GetList().Count;
-			ViewBag.inboxMessageCount = messageManager.GetListInbox().Count;
-			ViewBag.sendMessageCount = messageManager.GetListSendbox().Count;
-			ViewBag.trashMessages = messageManager.GetTrashMessages().Count();
-			ViewBag.draftMessageCount = messageManager.GetDraftMessages().Count();
+			ViewBag.inboxMessageCount = messageManager.GetListInbox(p).Count;
+			ViewBag.sendMessageCount = messageManager.GetListSendbox(p).Count;
+			ViewBag.trashMessages = messageManager.GetTrashMessages(p).Count();
+			ViewBag.draftMessageCount = messageManager.GetDraftMessages(p).Count();
 
 			return PartialView();
 		}
