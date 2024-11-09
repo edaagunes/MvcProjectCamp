@@ -104,7 +104,7 @@
 
 ## Görseller
 
-### 👀 Vitrin
+### 🎈 Vitrin
 
 ![1](https://github.com/user-attachments/assets/91705854-7f4e-4d65-9fae-8a889fd15d3a)
 
