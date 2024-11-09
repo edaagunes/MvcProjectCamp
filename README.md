@@ -4,7 +4,7 @@
 
 📘 Bu projede popüler sözlük uygulamalarının işleyişi baz alınarak bir Ekşi Sözlük benzeri site geliştirildi. Kullanıcıların sözlük başlıklarını görebileceği ve istediği başlığa bir entry girebileceği, kendisine diğer kullanıcılar tarafından gelen mesajları görebileceği bir kullanıcı paneli oluşturuldu. Admin tarafında başlıkların kategorilerini düzenleme, başlıkların ve içeriklerin yönetimi, mesajlaşma modülü gibi bir çok özellik eklendi. 
 
-### 🎈 [Vitrin](#-vitrin)
+### 🎈 [Vitrin](#-vitrin-1)
 
 🖼️ Projenin tanıtımı amacıyla bir Vitrin paneli tasarlandı. Proje hakkında bilgi verildi.
 
